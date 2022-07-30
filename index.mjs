@@ -24,7 +24,7 @@ console.log(`Bob's account balance before is ${await getBalance(accBob)}`);
 
 const countDown = () => ({
   showCountDown: (time) => {
-    console.log(time);
+    console.log( parseInt(time));
   }
 })
 
@@ -36,13 +36,13 @@ await Promise.all([
     ...countDown(),
     inherit: stdlib.parseCurrency(5000),
     getAction: () => {
-      // const action = Math.floor(Math.random() * 2);
-      // action == 0 ? console.log('I am not here') : console.log('I am here');
-      const res = await ask.ask(
-        `Are you here`,
-        ask.yesno
-      )
-      return (res == yes ? true : false);
+      const action = Math.floor(Math.random() * 2);
+      action == 0 ? console.log('I am not here') : console.log('I am here');
+      // const res = await ask.ask(
+      //   `Are you here`,
+      //   ask.yesno
+      // )
+      return (action == 1 ? true : false);
     }
     // implement Alice's interact object here
   }),
@@ -51,16 +51,16 @@ await Promise.all([
     ...countDown(),
    
     boolTerms: (num) => {
-      const accepted = await ask.ask(
-        `Do you accept the terms`,
-        ask.yesno
-      )
-      if (accepted) {
+      // const accepted = await ask.ask(
+      //   `Do you accept the terms`,
+      //   ask.yesno
+      // )
+      // if (accepted) {
         console.log(`Bob accepts the terms of the Vault for ${stdlib.formatCurrency(num)}`);
         return true;
-      } else {
-        process.exit(0);
-      }
+      // } else {
+      //   process.exit(0);
+      // }
      
     }
     // implement Bob's interact object here
